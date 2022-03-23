@@ -19,6 +19,13 @@ const Post = () => {
         <hr />
         <span className="postDate">1 hr ago</span>
       </div>
+      <p className="postDesc">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum,
+        recusandae! Perferendis, corrupti. Nostrum atque fuga officiis ipsum?
+        Iste, fuga neque! Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Voluptatum, recusandae! Perferendis, corrupti. Nostrum atque fuga
+        officiis ipsum? Iste, fuga neque!
+      </p>
     </div>
   );
 };
