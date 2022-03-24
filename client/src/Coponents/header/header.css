@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   font-family: "Lora", serif;
-  color: #444;
+  color: rgb(54, 53, 53);
 }
 .hederTitleSm {
   position: absolute;
@@ -15,12 +15,13 @@
 }
 .hederTitleLg {
   position: absolute;
-  top: 20%;
+  top: 17%;
   font-size: 100px;
 }
 .headerImg {
-  width: 100%;
+  width: 97%;
+  border-radius: 10px;
   height: 450px;
-  margin-top: 80px;
+  margin-top: 105px;
   object-fit: cover;
 }
