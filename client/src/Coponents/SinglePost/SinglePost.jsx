@@ -1,6 +1,12 @@
 import "./singlepost.css";
+import { useLocation } from "react-router";
+import { useEffect } from "react";
 
 const SinglePost = () => {
+  const location = useLocation();
+  const pathname = location.pathname.split("/")[2];
+
+  useEffect(() => {}, []);
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
