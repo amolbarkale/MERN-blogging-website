@@ -1,22 +1,29 @@
 import "./singlepost.css";
 import { useLocation } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const SinglePost = () => {
   const location = useLocation();
   const pathname = location.pathname.split("/")[2];
-
-  useEffect(() => {}, []);
+  const [post, setPost] = useState({});
+  useEffect(() => {
+    const getPost = async () => {
+      const res = await axios.get("http://localhost:5000/posts/" + pathname);
+      setPost(res.data);
+    };
+    getPost();
+  }, [pathname]);
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
-        <img
-          src="https://thumbs.dreamstime.com/b/spring-flowers-blue-crocuses-drops-water-backgro-background-tracks-rain-113784722.jpg"
-          alt=""
-          className="singlePostImg"
-        />
+        {post.photo && (
+          <img src={post.photo} alt="" className="singlePostImg" />
+        )}
+
         <h1 className="singlePostTitle">
-          dolor adipisicing elit. Delectus, dicta.
+          {post.title}{" "}
           <div className="singlePostEdit">
             <i className=" singlePostIcn far fa-edit"></i>
             <i className=" singlePostIcn far fa-trash-alt"></i>
@@ -24,31 +31,17 @@ const SinglePost = () => {
         </h1>
         <div className="singglePostInfo">
           <span className="singlePostAuthor">
-            Auth : <b>Amol</b>
+            Author :
+            <Link className="link" to={`/?user=${post.username}`}>
+              <b>{post.username}</b>
+            </Link>
           </span>
           <span className="singlePostDate">
-            Date : <b>1 hr ago</b>
+            Date : <b>{new Date(post.createdAt).toDateString()}</b>
           </span>{" "}
         </div>
 
-        <p className="singlePostDesc">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem modi
-          expedita quam eligendi esse quas illum sit non cupiditate, quae omnis
-          quibusdam sequi. Consequuntur iusto, adipisci sunt eos excepturi error
-          dolor sapiente perspiciatis fugit fugiat minima illum accusamus saepe
-          maxime deserunt beatae deleniti autem ut odit mollitia voluptates!
-          Ratione fuga placeat suscipit nihil fugiat eius doloremque. Eos
-          inventore quidem ipsam vitae sed aliquam esse, culpa placeat totam ut
-          ullam temporibus in distinctio commodi sapiente excepturi error dolor
-          sapiente perspiciatis fugit fugiat minima illum accusamus saepe maxime
-          deserunt beatae deleniti autem ut odit mollitia voluptates! Ratione
-          fuga placeat suscipit nihil fugiat eius doloremque. Eos inventore
-          quidem ipsam vitae sed aliquam esse, culpa placeat totam ut ullam
-          temporibus in distinctio commodi sapiente cupiditate quia aspernatur,
-          ea ipsa atque! Vitae dolorum neque odio, aliquid quasi nam soluta
-          architecto ducimus alias culpa voluptatum. Magni distinctio sapiente
-          facilis quam ab accusantium.
-        </p>
+        <p className="singlePostDesc">{post.desc}</p>
       </div>
     </div>
   );
