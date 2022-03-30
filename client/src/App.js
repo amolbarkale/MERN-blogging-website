@@ -6,9 +6,11 @@ import Write from "./Pages/Write/Write";
 import Settings from "./Pages/Settings/Settings";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Reg";
+import { Context } from "./Contexts/context";
+import { useContext } from "react";
 import { Route, Switch } from "react-router-dom";
 function App() {
-  const user = false;
+  const { user } = useContext(Context);
   return (
     <>
       <Topbar />

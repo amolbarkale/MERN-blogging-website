@@ -9,6 +9,8 @@ const userRoute = require("./Controllers/users.controllers");
 const postRoute = require("./Controllers/posts.controllers");
 const categoriesRoute = require("./Controllers/categories.controllers");
 const multer = require("multer");
+const path = require("path");
+app.use("/images", express.static(path.join(__dirname, "/images")));
 
 mongoose
   .connect(process.env.MONGO_URL, {
@@ -23,7 +25,7 @@ const storage = multer.diskStorage({
     cb(null, "images");
   },
   filename: (req, file, cb) => {
-    cb(null, "namaste.png");
+    cb(null, req.body.name);
   },
 });
 

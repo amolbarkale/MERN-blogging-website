@@ -46,3 +46,8 @@
   border-radius: 10px;
   background: white;
 }
+
+.loginBtn:disabled {
+  cursor: not-allowed;
+  background-color: lightcoral;
+}
